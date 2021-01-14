@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <title>KANBAN Board</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- REGISTER FORM -->
+        <div class="registration-form" v-show="page === 'welcome'" v-if="form === 'register'">
+            <form>
+                <div class="form-title">
+                    <h3>Register Your Account</h3>
+                </div>
+                <div class="form-icon">
+                    <span><i class="icon icon-user"></i></span>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control item" id="username" v-model="user.username"
+                        placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control item" id="email" v-model="user.email" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control item" id="password" v-model="user.password"
+                        placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-block btn-primary create-account" @click.prevent="register()"
+                        id="create-account">Create
+                        Account</button>
+                    <button type="button" class="btn btn-block btn-success create-account"
+                        @click.prevent="changeForm('login')" id="have-acoount">I Have an
+                        Account</button>
+                </div>
+            </form>
+            <div class="social-media">
+                <h5>Sign up with social media</h5>
+                <div class="social-icons">
+                    <a href="#"><i class="icon-social-facebook" title="Facebook"></i></a>
+                    <a href="#"><i class="icon-social-google" title="Google"></i></a>
+                    <a href="#"><i class="icon-social-twitter" title="Twitter"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <div class="login-form" v-show="page === 'welcome'" v-else>
+            <form>
+                <div class="form-title">
+                    <h3>Sign In Your Account</h3>
+                </div>
+                <div class="form-icon">
+                    <span><i class="icon icon-user"></i></span>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control item" id="validator" v-model="user.validator"
+                        placeholder="Username or Email">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control item" id="password" v-model="user.password"
+                        placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-block btn-primary create-account" @click.prevent="login()"
+                        id="sign-in">Sign In</button>
+                    <button type="button" class="btn btn-block btn-success create-account"
+                        @click.prevent="changeForm('register')" id="register">Register</button>
+                </div>
+            </form>
+            <div class="social-media">
+                <h5>Sign up with social media</h5>
+                <div class="social-icons">
+                    <a href="#"><i class="icon-social-facebook" title="Facebook"></i></a>
+                    <a href="#"><i class="icon-social-google" title="Google"></i></a>
+                    <a href="#"><i class="icon-social-twitter" title="Twitter"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- halaman utama setelah login -->
+        <main class="content" v-show="page === 'main'">
+            <div class="container p-0" v-show="conditional === 'tasks'">
+
+                <div class="navbar">
+                    <h1 class="h3">Kanban Board</h1>
+                    <div class="nav-right">
+                        <button type="button" class="btn btn-info" id="add-category">Add Category</button>
+                        <button type="button" class="btn btn-dark" @click.prevent="logout()"
+                            id="logout-btn">LOGOUT</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- pembagian column tabel yang isinya 4 tabel -->
+                    <!-- BACKLOG CATEGORY-->
+                    <div class="col-12 col-lg-6 col-xl-3">
+
+                        <!-- bagian task box -->
+                        <div class="card card-border-primary">
+
+                            <!-- bagian header -->
+                            <div class="card-header">
+                                <h5 class="card-title" id="back-log-title">Back-Log</h5>
+                                <h6 class="card-subtitle" id="back-log-sub">{{ num.backlog }} Outstanding Tasks</h6>
+                            </div>
+
+                            <!-- bagian penampung banyak card task -->
+                            <div class="card-body">
+
+                                <!-- masing2 card task ditaruh sini -->
+                                <div class="card mb-3 bg-light" v-for="(item, idx) in backlog" :key="idx">
+                                    <div class="card-body p-3">
+                                        <div class="float-right mr-n2">
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" checked="">
+                                                <span class="custom-control-label"></span>
+                                            </label>
+                                        </div>
+                                        <p>{{  item.title }}</p>
+                                        <div class="float-right mt-n1">
+                                            <img src="https://bootdey.com/img/Content/avatar/avatar6.png" width="32"
+                                                height="32" class="rounded-circle" alt="Avatar"><br><br>
+                                        </div>
+                                        <div class="btn-container">
+                                            <a class="btn btn-outline-primary btn-sm" href="#"
+                                                @click.prevent="showDetail(item.id)">View Detail</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- tombol add -->
+                                <div class="btn-container">
+                                    <a href="#" class="btn btn-primary btn-block"
+                                        @click.prevent="showAdd('backlog')">Add Task</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- pembagian column tabel yang isinya 4 tabel -->
+                    <!-- TODO CATEGORY-->
+                    <div class="col-12 col-lg-6 col-xl-3">
+
+                        <!-- bagian task box -->
+                        <div class="card card-border-warning">
+
+                            <!-- bagian header -->
+                            <div class="card-header">
+                                <h5 class="card-title" id="todo-title">To-Do</h5>
+                                <h6 class="card-subtitle" id="todo-sub">{{ num.todo }} Tasks to do, cheer up!</h6>
+                            </div>
+
+                            <!-- bagian penampung banyak card task -->
+                            <div class="card-body">
+
+                                <!-- masing2 card task ditaruh sini -->
+                                <div class="card mb-3 bg-light" v-for="(item, idx) in todo" :key="idx">
+                                    <div class="card-body p-3">
+                                        <div class="float-right mr-n2">
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" checked="">
+                                                <span class="custom-control-label"></span>
+                                            </label>
+                                        </div>
+                                        <p>{{  item.title }}</p>
+                                        <div class="float-right mt-n1">
+                                            <img src="https://bootdey.com/img/Content/avatar/avatar6.png" width="32"
+                                                height="32" class="rounded-circle" alt="Avatar"><br><br>
+                                        </div>
+                                        <div class="btn-container">
+                                            <a class="btn btn-outline-primary btn-sm" href="#" @click.prevent="showDetail(item.id)">View Detail</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- tombol add -->
+                                <div class="btn-container">
+                                    <a href="#" class="btn btn-primary btn-block" @click.prevent="showAdd('todo')">Add
+                                        Task</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- pembagian column tabel yang isinya 4 tabel -->
+                    <!-- DOING CATEGORY-->
+                    <div class="col-12 col-lg-6 col-xl-3">
+
+                        <!-- bagian task box -->
+                        <div class="card card-border-danger">
+
+                            <!-- bagian header -->
+                            <div class="card-header">
+                                <h5 class="card-title" id="doing-title">Doing</h5>
+                                <h6 class="card-subtitle" id="doing-sub">{{ num.doing }} Tasks on progress, dont give
+                                    up!</h6>
+                            </div>
+
+                            <!-- bagian penampung banyak card task -->
+                            <div class="card-body">
+
+                                <!-- masing2 card task ditaruh sini -->
+                                <div class="card mb-3 bg-light" v-for="(item, idx) in doing" :key="idx">
+                                    <div class="card-body p-3">
+                                        <div class="float-right mr-n2">
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" checked="">
+                                                <span class="custom-control-label"></span>
+                                            </label>
+                                        </div>
+                                        <p>{{  item.title }}</p>
+                                        <div class="float-right mt-n1">
+                                            <img src="https://bootdey.com/img/Content/avatar/avatar6.png" width="32"
+                                                height="32" class="rounded-circle" alt="Avatar"><br><br>
+                                        </div>
+                                        <div class="btn-container">
+                                            <a class="btn btn-outline-primary btn-sm" href="#" @click.prevent="showDetail(item.id)">View Detail</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- tombol add -->
+                                <div class="btn-container">
+                                    <a href="#" class="btn btn-primary btn-block" @click.prevent="showAdd('doing')">Add
+                                        Task</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- pembagian column tabel yang isinya 4 tabel -->
+                    <!-- DONE CATEGORY-->
+                    <div class="col-12 col-lg-6 col-xl-3">
+
+                        <!-- bagian task box -->
+                        <div class="card card-border-success">
+
+                            <!-- bagian header -->
+                            <div class="card-header">
+                                <h5 class="card-title" id="done-title">Done</h5>
+                                <h6 class="card-subtitle" id="done-sub">{{ num.done }} Tasks complete, well done!</h6>
+                            </div>
+
+                            <!-- bagian penampung banyak card task -->
+                            <div class="card-body">
+
+                                <!-- masing2 card task ditaruh sini -->
+                                <div class="card mb-3 bg-light" v-for="(item, idx) in done" :key="idx">
+                                    <div class="card-body p-3">
+                                        <div class="float-right mr-n2">
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" checked="">
+                                                <span class="custom-control-label"></span>
+                                            </label>
+                                        </div>
+                                        <p>{{  item.title }}</p>
+                                        <div class="float-right mt-n1">
+                                            <img src="https://bootdey.com/img/Content/avatar/avatar6.png" width="32"
+                                                height="32" class="rounded-circle" alt="Avatar"><br><br>
+                                        </div>
+                                        <div class="btn-container">
+                                            <a class="btn btn-outline-primary btn-sm" href="#" @click.prevent="showDetail(item.id)">View Detail</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- tombol add -->
+                                <div class="btn-container">
+                                    <a href="#" class="btn btn-primary btn-block" @click.prevent="showAdd('done')">Add
+                                        Task</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- form add task -->
+            <div class="form-add" v-show="conditional === 'add'">
+                <form>
+                    <div class="add-form-title" style="margin-bottom: 20px;">
+                        <h2>Add Task Here!</h2>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Title :</label>
+                        <input type="text" class="form-control" id="add-title" v-model="task.title"
+                            aria-describedby="emailHelp" placeholder="Task Title">
+                    </div>
+                    <div class="form-group">
+                        <label for="due_date">Due Date :</label>
+                        <input type="date" class="form-control" id="add-due_date" v-model="task.due_date"
+                            aria-describedby="emailHelp">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description :</label>
+                        <textarea class="form-control" id="add-description" v-model="task.description" rows="3"
+                            placeholder="Describe Your Task..."></textarea>
+                    </div>
+                    <div class="submit-add">
+                        <button type="submit" class="btn btn-primary" @click.prevent="addTask()">Add</button>
+                        <button type="submit" class="btn btn-danger" @click.prevent="resetTask()">Cancel</button>
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- View Detail -->
+            <div class="detail-content" v-show="conditional === 'detail'">
+                <div class="detail-header">
+                    <h2>Detail About Task</h2>
+                </div>
+                <div class="detail-body">
+                    <p>Title : <span>{{ task.title }}</span></p>
+                    <p>Description : <span>{{ task.description }}</span></p>
+                    <p>Due Date : <span>{{ task.due_date }}</span></p>
+                </div>
+                <div class="detail-footer">
+                    <button type="submit" class="btn btn-warning btn-view" @click.prevent="showEdit()">Edit</button>
+                    <button type="submit" class="btn btn-danger btn-view" @click="deleteTask()">Delete</button>
+                    <button type="submit" class="btn btn-secondary btn-view" @click.prevent="resetId()">Cancel</button>
+                </div>
+            </div>
+
+            <!-- form edit task -->
+            <div class="form-edit" v-show="conditional === 'edit'">
+                <form>
+                    <div class="edit-form-title" style="margin-bottom: 20px;">
+                        <h2>Edit Task Here!</h2>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Title :</label>
+                        <input type="text" class="form-control" id="edit-title" aria-describedby="emailHelp"
+                            v-model="task.title">
+                    </div>
+                    <div class="form-group">
+                        <label for="due_date">Due Date :</label>
+                        <input type="date" class="form-control" id="edit-due_date" aria-describedby="emailHelp" v-model="task.due_date">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description :</label>
+                        <textarea class="form-control" id="edit-description" rows="3"
+                        v-model="task.description"></textarea>
+                    </div>
+                    <div class="submit-edit">
+                        <button type="submit" class="btn btn-primary" @click.prevent="editTask()">Edit</button>
+                        <button type="submit" class="btn btn-danger" @click.prevent="resetId()">Cancel</button>
+                    </div>
+
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="./script.js"></script>
+</body>
+
+</html>

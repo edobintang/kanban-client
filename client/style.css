@@ -1,0 +1,470 @@
+body{
+    margin-top:20px;
+    background: gainsboro
+}
+
+/* REGISTER FORM */
+
+.form-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+.registration-form{
+	padding: 50px 0;
+}
+
+.registration-form form{
+    background-color: powderblue;
+    max-width: 600px;
+    margin: auto;
+    padding: 50px 70px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+}
+
+.registration-form .form-icon{
+	text-align: center;
+    background-color: #5891ff;
+    border-radius: 50%;
+    font-size: 40px;
+    color: white;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    margin-bottom: 50px;
+    line-height: 100px;
+}
+
+.registration-form .item{
+	border-radius: 20px;
+    margin-bottom: 25px;
+    padding: 10px 20px;
+}
+
+.registration-form .create-account{
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    color: white;
+    margin-top: 20px;
+}
+
+.registration-form .social-media{
+    max-width: 600px;
+    background-color: powderblue;
+    margin: auto;
+    padding: 35px 0;
+    text-align: center;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    color: #9fadca;
+    border-top: 1px solid #dee9ff;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+}
+
+.registration-form .social-icons{
+    margin-top: 30px;
+    margin-bottom: 16px;
+}
+
+.registration-form .social-icons a{
+    font-size: 23px;
+    margin: 0 3px;
+    color: #5691ff;
+    border: 1px solid;
+    border-radius: 50%;
+    width: 45px;
+    display: inline-block;
+    height: 45px;
+    text-align: center;
+    background-color: #fff;
+    line-height: 45px;
+}
+
+.registration-form .social-icons a:hover{
+    text-decoration: none;
+    opacity: 0.6;
+}
+
+/* LOGIN FORM */
+
+.login-form{
+	padding: 50px 0;
+}
+
+.login-form form{
+    background-color: darkseagreen;
+    max-width: 600px;
+    margin: auto;
+    padding: 50px 70px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+}
+
+.login-form .form-icon{
+	text-align: center;
+    background-color: #5891ff;
+    border-radius: 50%;
+    font-size: 40px;
+    color: white;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    margin-bottom: 50px;
+    line-height: 100px;
+}
+
+.login-form .item{
+	border-radius: 20px;
+    margin-bottom: 25px;
+    padding: 10px 20px;
+}
+
+.login-form .create-account{
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    color: white;
+    margin-top: 20px;
+}
+
+.login-form .social-media{
+    max-width: 600px;
+    background-color: darkseagreen;
+    margin: auto;
+    padding: 35px 0;
+    text-align: center;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    color: #9fadca;
+    border-top: 1px solid #dee9ff;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+}
+
+.login-form .social-icons{
+    margin-top: 30px;
+    margin-bottom: 16px;
+}
+
+.login-form .social-icons a{
+    font-size: 23px;
+    margin: 0 3px;
+    color: #5691ff;
+    border: 1px solid;
+    border-radius: 50%;
+    width: 45px;
+    display: inline-block;
+    height: 45px;
+    text-align: center;
+    background-color: #fff;
+    line-height: 45px;
+}
+
+.login-form .social-icons a:hover{
+    text-decoration: none;
+    opacity: 0.6;
+}
+
+/*
+@media (max-width: 576px) {
+    .registration-form form{
+        padding: 50px 20px;
+    }
+
+    .registration-form .form-icon{
+        width: 70px;
+        height: 70px;
+        font-size: 30px;
+        line-height: 70px;
+    }
+}
+*/
+
+
+
+/* ----------- NAVBAR --------- */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.nav-right {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin: 0;
+}
+
+#add-category {
+    margin-right: 20px;
+}
+
+/* ----------- TASK BOX ---------- */
+
+.card {
+    margin-bottom: 1.5rem;
+    box-shadow: 0 .25rem .5rem rgba(0, 0, 0, .025)
+}
+
+.card-border-primary {
+    border-top: 4px solid #2979ff
+}
+
+.card-border-secondary {
+    border-top: 4px solid #efefef
+}
+
+.card-border-success {
+    border-top: 4px solid #00c853
+}
+
+.card-border-info {
+    border-top: 4px solid #3d5afe
+}
+
+.card-border-warning {
+    border-top: 4px solid #ff9100
+}
+
+.card-border-danger {
+    border-top: 4px solid #ff1744
+}
+
+.card-border-light {
+    border-top: 4px solid #f8f9fa
+}
+
+.card-border-dark {
+    border-top: 4px solid #6c757d
+}
+
+.card-header {
+    border-bottom-width: 1px
+}
+
+.card-actions a {
+    color: #495057;
+    text-decoration: none
+}
+
+.card-actions svg {
+    width: 16px;
+    height: 16px
+}
+
+.card-actions .dropdown {
+    line-height: 1.4
+}
+
+.card-title {
+    font-weight: 500;
+    margin-top: .1rem
+}
+
+.card-subtitle {
+    font-weight: 400
+}
+
+.card-table {
+    margin-bottom: 0
+}
+
+.card-table tr td:first-child,
+.card-table tr th:first-child {
+    padding-left: 1.25rem
+}
+
+.card-table tr td:last-child,
+.card-table tr th:last-child {
+    padding-right: 1.25rem
+}
+
+.card-img-top {
+    height: 100%
+}
+.card {
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,.025);
+}
+
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #e5e9f2;
+    border-radius: .2rem;
+}
+
+/* -------- TASK BOX HEADER ---------- */
+
+.card-header:first-child {
+    border-radius: calc(.2rem - 1px) calc(.2rem - 1px) 0 0;
+}
+
+.card-header {
+    border-bottom-width: 1px;
+}
+.card-header {
+    padding: .75rem 1.25rem;
+    margin-bottom: 0;
+    color: inherit;
+    background-color: #fff;
+    border-bottom: 1px solid #e5e9f2;
+}
+
+.btn-container, .mt-n1 {
+    display: flex;
+    justify-content: center;
+}
+
+#back-log-title {
+    color: red;
+}
+
+#back-log-sub {
+    color: salmon;
+}
+
+#todo-title {
+    color:orange;
+}
+
+#todo-sub {
+    color: sandybrown;
+}
+
+#doing-title {
+    color: royalblue;
+}
+
+#doing-sub {
+    color: deepskyblue;
+}
+
+#done-title {
+    color: limegreen;
+}
+
+#done-sub {
+    color: mediumseagreen;
+}
+
+/* FORM ADD */
+.form-add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: salmon;
+    width: 500px;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.add-form-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.submit-add {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* FORM EDIT */
+.form-edit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightblue;
+    width: 500px;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.edit-form-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.submit-edit {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* VIEW DETAIL */
+.detail-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.detail-header h2 {
+    margin-top:15px;
+    margin-bottom: 15px;
+}
+  
+.detail-body {
+    padding: 2px 16px;
+}
+  
+.detail-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.btn-view {
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+  
+.detail-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+  }
+  
+  /* Add Animation */
+  @keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+  }
